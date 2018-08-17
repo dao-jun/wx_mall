@@ -34,7 +34,7 @@ class WxMallBrandController {
         })
 
         def total = brandService.selectCount(wrapper)
-        def data = new HashMap()
+        def data = [:]
         data.put("brandList", pageInfo.getList())
         data.put("totalPages", (int) Math.ceil((double) total / size))
         HttpResponse.success(data)
@@ -43,14 +43,14 @@ class WxMallBrandController {
     @GetMapping("/detail")
     def detail(Integer id) {
         if (id == null) {
-             return HttpResponse.badArgument()
+            return HttpResponse.badArgument()
         }
         def entity = brandService.selectOne(new EntityWrapper<WxMallBrandDO>().where("id = {0}", id))
         if (entity == null) {
-           return HttpResponse.badArgumentValue()
+            return HttpResponse.badArgumentValue()
         }
 
-        def data = new HashMap()
+        def data = [:]
         data.put("brand", entity)
         HttpResponse.success(data)
     }

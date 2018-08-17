@@ -72,7 +72,7 @@ class WxMallCommentController {
 
         def hasPicCount = commentService.selectCount(new EntityWrapper<WxMallCommentDO>()
                 .where("value_id = {0} and type_id = {1} and has_picture = true and deleted = false", valueId, typeId))
-        def data = new HashMap()
+        def data = [:]
         data.put("allCount", allCount)
         data.put("hasPicCount", hasPicCount)
         HttpResponse.success(data)
@@ -115,7 +115,7 @@ class WxMallCommentController {
 
         pageInfo.getRecords().forEach({
             comment ->
-                def commentVo = new HashMap()
+                def commentVo = [:]
                 def userInfo = userService.getInfo(comment.userId)
                 commentVo.put("userInfo", userInfo)
                 commentVo.put("addTime", comment.addTime)
@@ -124,7 +124,7 @@ class WxMallCommentController {
                 commentVOList.add(commentVo)
         })
 
-        def data = new HashMap()
+        def data = [:]
         data.put("data", commentVOList)
         data.put("count", pageInfo.getTotal())
         data.put("currentPage", page)

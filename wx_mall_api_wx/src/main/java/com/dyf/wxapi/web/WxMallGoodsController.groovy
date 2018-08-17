@@ -297,7 +297,7 @@ class WxMallGoodsController {
         int cid = goods.getCategoryId()
 
         // 查找六个相关商品
-        int related = 6;
+        int related = 6
         def goodsList = goodsService.selectPage(new Page<WxMallGoodsDO>(0, related), new EntityWrapper<WxMallGoodsDO>()
                 .where("category_id = {0}", cid)).getRecords()
         def data = [:]

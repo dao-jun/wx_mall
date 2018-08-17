@@ -83,7 +83,7 @@ class WxMallIndexController {
 //                        .where("category_id in {0} and deleted = false", l2List)).getRecords()
 
 
-                def catGoods = new HashMap()
+                def catGoods = [:]
                 catGoods.put("id", cateL1.id)
                 catGoods.put("name", cateL1.name)
                 catGoods.put("goodsList", [])

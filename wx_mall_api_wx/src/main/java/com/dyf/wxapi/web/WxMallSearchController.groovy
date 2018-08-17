@@ -57,7 +57,7 @@ class WxMallSearchController {
                     .where("user_id = {0} and deleted = false"))
         }
 
-        def data = new HashMap()
+        def data = [:]
         data.put("defaultKeyword", defaultKeyword)
         data.put("historyKeywordList", historyList)
         data.put("hotKeywordList", hotKeywordList)

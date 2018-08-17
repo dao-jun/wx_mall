@@ -64,13 +64,13 @@ class WxMallCartController {
                 checkedGoodsCount += cart.number
                 checkedGoodsAmount = goodsAmount.add(cart.retailPrice * new BigDecimal(cart.number))
         })
-        def cartTotal = new HashMap()
+        def cartTotal = [:]
         cartTotal.put("goodsCount", goodsCount)
         cartTotal.put("goodsAmount", goodsAmount)
         cartTotal.put("checkedGoodsCount", checkedGoodsCount)
         cartTotal.put("checkedGoodsAmount", checkedGoodsAmount)
 
-        def result = new HashMap()
+        def result = [:]
         result.put("cartList", cartList)
         result.put("cartTotal", cartTotal)
 
@@ -420,7 +420,7 @@ class WxMallCartController {
         // 订单费用
         def orderTotalPrice = checkedGoodsPrice.add(freightPrice).subtract(couponPrice);
         def actualPrice = orderTotalPrice.subtract(integralPrice);
-        def data = new HashMap()
+        def data = [:]
         data.put("addressId", addressId)
         data.put("checkedAddress", checkedAddress)
         data.put("couponId", couponId)

@@ -50,7 +50,7 @@ class WxMallAddressController {
 
         addressDOList.forEach({
             address ->
-                def addressVO = new HashMap<String, Object>()
+                def addressVO = [:]
                 addressVO.put("id", address.id)
                 addressVO.put("name", address.name)
                 addressVO.put("mobile", address.mobile)
@@ -88,7 +88,7 @@ class WxMallAddressController {
             return HttpResponse.badArgumentValue()
         }
 
-        def data = new HashMap()
+        def data = [:]
         data.put("id", address.id)
         data.put("name", address.name)
         data.put("provinceId", address.provinceId)

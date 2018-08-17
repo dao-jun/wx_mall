@@ -55,14 +55,14 @@ class WxMallCatalogController {
     @GetMapping("/current")
     Object current(Integer id) {
         if (id == null) {
-           return HttpResponse.badArgument()
+            return HttpResponse.badArgument()
         }
 
         //当前分类
         WxMallCategoryDO wxMallCategoryDO = categoryService.selectById(id)
         List<WxMallCategoryDO> wxMallCategoryDOList = categoryService
                 .selectList(new EntityWrapper<WxMallCategoryDO>().where("parent_id = {0} and deleted = false", wxMallCategoryDO.id))
-        Map<String, Object> data = new HashMap()
+        def data = [:]
         data.put("currentCategory", wxMallCategoryDO)
         data.put("currentSubCategory", wxMallCategoryDOList)
         HttpResponse.success(data)

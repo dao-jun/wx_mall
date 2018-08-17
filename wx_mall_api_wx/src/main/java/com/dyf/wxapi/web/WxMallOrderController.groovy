@@ -107,7 +107,7 @@ class WxMallOrderController {
         def orderVOList = new LinkedList()
         orderList.forEach({
             order ->
-                def orderVO = new HashMap()
+                def orderVO = [:]
                 orderVO.put("id", order.id)
                 orderVO.put("orderSn", order.orderSn)
                 orderVO.put("actualPrice", order.actualPrice)
@@ -119,7 +119,7 @@ class WxMallOrderController {
                 def orderGoodsVOList = new LinkedList()
                 orderGoodsList.forEach({
                     orderGoods ->
-                        def orderGoodsVO = new HashMap()
+                        def orderGoodsVO = [:]
                         orderGoodsVO.put("id", orderGoods.getId())
                         orderGoodsVO.put("goodsName", orderGoods.getGoodsName())
                         orderGoodsVO.put("number", orderGoods.getNumber())
@@ -158,7 +158,7 @@ class WxMallOrderController {
         if (!order.userId.equals(userId)) {
             return HttpResponse.fail(403, "该订单不是当前用户订单！")
         }
-        def orderVO = new HashMap()
+        def orderVO = [:]
         orderVO.put("id", order.id)
         orderVO.put("orderSn", order.orderSn)
         orderVO.put("addTime", LocalDate.now())
@@ -172,10 +172,10 @@ class WxMallOrderController {
         orderVO.put("handleOption", OrderUtil.build(order))
         def orderGoodsList = orderGoodsService.selectList(new EntityWrapper<WxMallOrderGoodsDO>()
                 .where("order_id = {0} and deleted = false", order.id))
-        def orderGoodsVOList = new LinkedList()
+        def orderGoodsVOList = []
         orderGoodsList.forEach({
             orderGoods ->
-                def orderGoodsVO = new HashMap()
+                def orderGoodsVO = [:]
                 orderGoodsVO.put("id", orderGoods.id)
                 orderGoodsVO.put("orderId", orderGoods.orderId)
                 orderGoodsVO.put("goodsId", orderGoods.goodsId)
@@ -186,7 +186,7 @@ class WxMallOrderController {
                 orderGoodsVO.put("goodsSpecificationValues", orderGoods.goodsSpecificationValues)
                 orderGoodsVOList.add(orderGoodsVO)
         })
-        def result = new HashMap()
+        def result = [:]
         result.put("orderInfo", orderVO)
         result.put("orderGoods", orderGoodsVOList)
         HttpResponse.success(result)
@@ -315,7 +315,7 @@ class WxMallOrderController {
             return HttpResponse.fail(403, "下单失败")
         }
         txManager.commit(status)
-        def data = new HashMap()
+        def data = [:]
         data.put("orderId", orderId)
         return HttpResponse.success(data)
     }

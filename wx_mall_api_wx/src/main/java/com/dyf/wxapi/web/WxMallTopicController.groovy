@@ -41,7 +41,7 @@ class WxMallTopicController {
                 .where("deleted = false"))
         def total = topicService.selectCount(new EntityWrapper<WxMallTopicDO>()
                 .where("deleted = false"))
-        def data = new HashMap()
+        def data = [:]
         data.put("data", topicList)
         data.put("count", total)
         HttpResponse.success(data)

@@ -182,7 +182,7 @@ class WxMallAuthController {
         userInfo.avatarUrl = user.avatar
 
         def userToken = UserTokenManager.generateToken(user.id)
-        def result = new HashMap()
+        def result = [:]
         result.put("token", userToken.token)
         result.put("tokenExpire", userToken.expireTime.toString())
         result.put("userInfo", userInfo)
@@ -208,7 +208,7 @@ class WxMallAuthController {
         def user = null
         if (userList.size() > 1) {
             return HttpResponse.serious()
-        } else if (userList.size() == 0) {
+        } else if (userList.isEmpty()) {
             return HttpResponse.fail(403, "手机号未注册")
         } else {
             user = userList.get(0)

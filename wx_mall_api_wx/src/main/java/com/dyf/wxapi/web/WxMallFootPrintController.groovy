@@ -86,7 +86,7 @@ class WxMallFootPrintController {
         def footPrintDTOList = new LinkedList<Object>()
         pageInfo.getRecords().forEach({
             footPrint ->
-                def print = new HashMap()
+                def print = [:]
                 print.put("id", footPrint.id)
                 print.put("goodsId", footPrint.goodsId)
                 print.put("addTime", footPrint.addTime)
@@ -100,7 +100,7 @@ class WxMallFootPrintController {
         })
 
 
-        def data = new HashMap()
+        def data = [:]
         data.put("footprintList", footPrintDTOList)
         data.put("totalPages", total)
         HttpResponse.success(data)
