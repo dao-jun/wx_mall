@@ -137,10 +137,10 @@ class OrderUtil {
 
 
     static boolean isPayStatus(WxMallOrderDO litemallOrder) {
-        return OrderUtil.STATUS_PAY == litemallOrder.getOrderStatus().shortValue()
+        return STATUS_PAY == litemallOrder.getOrderStatus().shortValue()
     }
 
     static boolean isShipStatus(WxMallOrderDO litemallOrder) {
-        return OrderUtil.STATUS_SHIP == litemallOrder.getOrderStatus().shortValue()
+        return STATUS_SHIP == litemallOrder.getOrderStatus().shortValue()
     }
 }

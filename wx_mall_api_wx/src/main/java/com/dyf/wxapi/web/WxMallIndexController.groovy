@@ -36,7 +36,7 @@ class WxMallIndexController {
 
     @GetMapping("/index")
     def index() {
-        def data = new HashMap<String, Object>()
+        def data = [:]
         def banner = adService.selectList(new EntityWrapper<WxMallAdDO>()
                 .where("position = {0} and deleted = false", 1))
 

@@ -42,10 +42,8 @@ class WxMallOrderController {
 
     @Autowired
     private PlatformTransactionManager txManager
-
     @Autowired
     private WxMallOrderService orderService
-
     @Autowired
     private WxMallAddressService addressService
     @Autowired
@@ -60,7 +58,6 @@ class WxMallOrderController {
     private WxMallRegionAreaService areaService
     @Autowired
     private WxMallProductService productService
-
     @Autowired
     private WxMallOrderGoodsService orderGoodsService
 
@@ -155,7 +152,7 @@ class WxMallOrderController {
         if (null == order) {
             return HttpResponse.fail(403, "订单不存在！")
         }
-        if (!order.userId.equals(userId)) {
+        if (order.userId != userId) {
             return HttpResponse.fail(403, "该订单不是当前用户订单！")
         }
         def orderVO = [:]
@@ -230,7 +227,7 @@ class WxMallOrderController {
             return HttpResponse.badArgumentValue()
         }
 
-        def checkedGoodsPrice = new BigDecimal(0.00)
+        def checkedGoodsPrice = new BigDecimal(0.00 as char)
         checkedGoodsList.forEach({
             checkGoods ->
                 checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.retailPrice.multiply(new BigDecimal(checkGoods.number)))

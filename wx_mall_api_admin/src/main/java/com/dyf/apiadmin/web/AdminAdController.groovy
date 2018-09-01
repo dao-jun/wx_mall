@@ -44,7 +44,6 @@ class AdminAdController {
         def data = [:]
         data.put("total", total)
         data.put("items", adList)
-
         return HttpResponse.success(data)
     }
 
@@ -88,5 +87,4 @@ class AdminAdController {
         adService.deleteById(ad.id)
         return HttpResponse.success()
     }
-
 }
